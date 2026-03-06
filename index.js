@@ -107,9 +107,11 @@ function populateSkills() {
 
 async function populateRepos() {
     const reposContainer = document.getElementById('repos');
+    if (!reposContainer) return; // Guard clause if the section is commented out in HTML
+
     try {
-        // Use the GitHub API directly instead of the third-party service
-        const response = await fetch(`https://api.github.com/users/EitanBakirov/repos?sort=updated&direction=desc&per_page=6`);
+        // Updated to your GitHub username
+        const response = await fetch(`https://api.github.com/users/amit22882036-ship-it/repos?sort=updated&direction=desc&per_page=6`);
         const repos = await response.json();
         
         repos.forEach(repo => {
@@ -128,7 +130,8 @@ async function populateRepos() {
         });
     } catch (error) {
         console.error("Error fetching repositories:", error);
-        reposContainer.innerHTML = `<p>Failed to load repositories. Please check my <a href="https://github.com/EitanBakirov" target="_blank">GitHub profile</a> directly.</p>`;
+        // Updated to your GitHub profile link
+        reposContainer.innerHTML = `<p>Failed to load repositories. Please check my <a href="https://github.com/amit22882036-ship-it" target="_blank">GitHub profile</a> directly.</p>`;
     }
 }
 
@@ -155,7 +158,7 @@ async function populateProjects() {
                 thumbnail: thumbnail
             };
             
-            // Get short description (first sentence)
+            // Get short description
             const shortDesc = project.shortDescription;
             
             projectCard.innerHTML = `
@@ -301,15 +304,15 @@ function populateSocialLinks() {
 
 // Run all population functions
 populateBio(bio, "bio");
-populateExpEdu(experience, "experience");
 populateExpEdu(education, "education");
+populateExpEdu(experience, "experience");
 
 // Call the function when the document is ready
 document.addEventListener('DOMContentLoaded', () => {
   populateSkills();
   populateRepos();
-  populateProjects(); // Add this line
-  populateSocialLinks(); // Add this line
+  populateProjects(); 
+  populateSocialLinks(); 
   
   // Close modal when clicking the X
   document.querySelector('.close-modal').addEventListener('click', function() {

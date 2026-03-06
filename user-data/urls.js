@@ -1,12 +1,11 @@
-const githubUsername = "EitanBakirov";
-const mediumUsername = "EitanBakirov";
-
+const githubUsername = "amit22882036-ship-it";
+const mediumUsername = ""; 
 const createMediumURL = (username) => `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${username}`;
 const createGitConnectedURL = (username) => `https://gitconnected.com/v1/portfolio/${username}`;
 const gitRepos = (username) => `https://pinned.berrysauce.dev/get/${username}`;
 
 export const URLs = {
-    medium: createMediumURL(mediumUsername),
+    medium: mediumUsername ? createMediumURL(mediumUsername) : "",
     gitConnected: createGitConnectedURL(githubUsername),
     gitRepo: gitRepos(githubUsername),
 };
