@@ -135,7 +135,7 @@ export const featuredProjects = [
     repoName: "agri-advisor",
     tags: ["Python", "FastAPI", "LangChain", "Pinecone", "Supabase", "ReAct", "RAG"],
     github: "https://github.com/amit22882036-ship-it/ArgiAgent.git", 
-    demo: "https://agents-960290.onrender.com"
+    demo: "https://argiagent.onrender.com"
   },
   {
     title: "Hotel Reality Gap Analysis",
