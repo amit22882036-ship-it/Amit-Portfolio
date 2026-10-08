@@ -138,11 +138,10 @@ export const featuredProjects = [
     github: "https://github.com/amit22882036-ship-it/ai-agent-control-center",
     demo: null,
     thumbnail: { url: "./images/projects/ai-agent-control-center/ai-agent-control-center-logo.png", alt: "AI Agent Control Center logo with connected robot agents around a central control node" },
-    // Replace gallery illustrations with product screenshots when ready.
-    imageNote: "Two conceptual illustrations — not product screenshots.",
+    imageNote: "Project screenshots: agent workspace and agent details.",
     images: [
-      { url: "./images/projects/ai-agent-control-center/coordination.svg", alt: "Conceptual illustration of branching workflows connecting collaborating AI agents" },
-      { url: "./images/projects/ai-agent-control-center/monitoring.svg", alt: "Conceptual illustration of task progress and information flowing between agent nodes" }
+      { url: "./images/projects/ai-agent-control-center/dashboard-clean.png", alt: "AI Agent Control Center dashboard showing the agent workspace, new-agent form, and past work" },
+      { url: "./images/projects/ai-agent-control-center/agent-details-clean.png", alt: "AI Agent Control Center workspace with an agent details panel showing status, actions, and output history" }
     ]
   },
   {

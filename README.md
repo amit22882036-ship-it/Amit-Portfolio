@@ -18,12 +18,12 @@ The site includes responsive project cards, a shared project details modal with 
 | **Autonomous Agricultural Advisory Agent** | A Python/FastAPI agricultural advisory application combining conversational AI, retrieval, and external data tools. | [ArgiAgent](https://github.com/amit22882036-ship-it/ArgiAgent) |
 | **Hotel Reality Gap Analysis** | A data processing and machine learning project comparing hotel marketing claims with guest reviews, with a Flask web application. | [checkin-to-reality](https://github.com/amit22882036-ship-it/checkin-to-reality) |
 
-AI Agent Control Center uses its project logo on the card and two conceptual SVG illustrations in the gallery, explicitly identified as illustrations rather than product screenshots. It has no public live demo.
+AI Agent Control Center uses its project logo on the card and two project screenshots in the gallery showing the agent workspace and agent details. It has no public live demo.
 
 ## Update content
 
 - Edit profile, education, skills, and featured projects in `user-data/data.js`.
-- AI Agent Control Center's card logo and alt text are in `thumbnail`; its gallery paths and alt text are in `images`. Replace gallery illustrations with screenshots when ready and update or remove `imageNote`.
+- AI Agent Control Center's card logo and alt text are in `thumbnail`; its gallery paths and alt text are in `images`. Update gallery screenshots and `imageNote` as the project evolves.
 - Configure public `github` and `demo` URLs to enable the corresponding modal buttons; absent or invalid URLs remain hidden.
 - Keep the canonical URL, Open Graph URL/image, and Twitter image in `index.html` aligned with the verified published address.
 
