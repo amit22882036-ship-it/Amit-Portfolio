@@ -144,7 +144,8 @@ async function populateProjects() {
         try {
             // Fetch screenshots
             const screenshots = project.images || await fetchRepoScreenshots(project.repoName);
-            const thumbnail = screenshots.length > 0 ? screenshots[0].url : './images/projects/default-thumb.png';
+            const thumbnail = project.thumbnail?.url || screenshots[0]?.url || './images/projects/default-thumb.png';
+            const thumbnailAlt = project.thumbnail?.alt || screenshots[0]?.alt || project.title;
             
             // Create project card with new layout
             const projectCard = document.createElement('div');
@@ -166,7 +167,7 @@ async function populateProjects() {
                 <div class="project-card" role="button" tabindex="0" aria-haspopup="dialog" aria-label="View details for ${project.title}" data-project="${encodeURIComponent(JSON.stringify(projectData))}">
                     <div class="project-card-content">
                         <div class="project-image">
-                            <img src="${thumbnail}" alt="${screenshots[0]?.alt || project.title}">
+                            <img src="${thumbnail}" alt="${thumbnailAlt}">
                             ${project.status ? '<span class="project-status"></span>' : ''}
                         </div>
                         <div class="project-info">
@@ -244,11 +245,10 @@ function openProjectModal(project) {
   carousel.innerHTML = '';
   carousel.style.display = '';
 
-  // Filter out the thumbnail/first image from carousel images
-  // Explicit image collections include their thumbnail in the gallery.
-  // Keep the existing screenshot-discovery convention for older projects.
+  // Discovered collections begin with a card thumbnail; explicit collections are gallery-only.
   const imageOffset = project.repoName ? 1 : 0;
   const carouselImages = project.images.slice(imageOffset);
+  carousel.classList.toggle('has-gallery-navigation', carouselImages.length > 1);
 
   if (carouselImages.length > 0) {
     carouselImages.forEach((img, index) => {
@@ -261,6 +261,18 @@ function openProjectModal(project) {
     
     // Create carousel navigation dots if multiple images
     if (carouselImages.length > 1) {
+      for (const [direction, label, symbol, offset] of [
+        ['previous', 'Previous image', '‹', -1],
+        ['next', 'Next image', '›', 1]
+      ]) {
+        const arrow = document.createElement('button');
+        arrow.type = 'button';
+        arrow.className = `gallery-arrow gallery-${direction}`;
+        arrow.setAttribute('aria-label', label);
+        arrow.innerHTML = `<span aria-hidden="true">${symbol}</span>`;
+        arrow.addEventListener('click', () => changeSlide(offset));
+        carousel.appendChild(arrow);
+      }
       const dotsContainer = document.createElement('div');
       dotsContainer.className = 'carousel-dots';
       for (let i = 0; i < carouselImages.length; i++) {
@@ -313,6 +325,8 @@ function closeProjectModal() {
 function showSlide(index) {
   const slides = document.querySelectorAll('#modal-carousel img');
   const dots = document.querySelectorAll('#modal-carousel .dot');
+  if (!slides.length) return;
+  index = ((index % slides.length) + slides.length) % slides.length;
   
   slides.forEach((slide, i) => {
     slide.className = i === index ? 'active' : '';
@@ -322,6 +336,11 @@ function showSlide(index) {
     dot.className = i === index ? 'dot active' : 'dot';
     dot.setAttribute('aria-pressed', i === index ? 'true' : 'false');
   });
+}
+
+function changeSlide(offset) {
+  const slides = [...document.querySelectorAll('#modal-carousel img')];
+  showSlide(slides.findIndex(slide => slide.classList.contains('active')) + offset);
 }
 
 function populateSocialLinks() {
@@ -371,6 +390,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (event.key === 'Escape') {
       event.preventDefault();
       closeProjectModal();
+    } else if ((event.key === 'ArrowLeft' || event.key === 'ArrowRight') &&
+               !event.altKey && !event.ctrlKey && !event.metaKey &&
+               !event.target.closest('input, textarea, select, [contenteditable]:not([contenteditable="false"])') &&
+               this.style.display === 'block' &&
+               this.querySelectorAll('#modal-carousel img').length > 1) {
+      event.preventDefault();
+      changeSlide(event.key === 'ArrowLeft' ? -1 : 1);
     } else if (event.key === 'Tab') {
       const controls = [...this.querySelectorAll('button, a[href]')].filter(el => !el.hidden && el.style.display !== 'none');
       const first = controls[0];

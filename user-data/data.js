@@ -137,10 +137,10 @@ export const featuredProjects = [
     tags: ["Python", "FastAPI", "React", "Vite", "SQLite", "REST APIs", "SSE", "Codex CLI"],
     github: "https://github.com/amit22882036-ship-it/ai-agent-control-center",
     demo: null,
-    // Replace these paths and alt texts with product screenshots after Stage 2.
-    imageNote: "Conceptual illustrations — temporary visuals, not product screenshots.",
+    thumbnail: { url: "./images/projects/ai-agent-control-center/ai-agent-control-center-logo.png", alt: "AI Agent Control Center logo with connected robot agents around a central control node" },
+    // Replace gallery illustrations with product screenshots when ready.
+    imageNote: "Two conceptual illustrations — not product screenshots.",
     images: [
-      { url: "./images/projects/ai-agent-control-center/orchestration.svg", alt: "Conceptual illustration of a central control node connected to AI agent nodes" },
       { url: "./images/projects/ai-agent-control-center/coordination.svg", alt: "Conceptual illustration of branching workflows connecting collaborating AI agents" },
       { url: "./images/projects/ai-agent-control-center/monitoring.svg", alt: "Conceptual illustration of task progress and information flowing between agent nodes" }
     ]
