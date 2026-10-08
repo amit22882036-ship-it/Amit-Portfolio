@@ -143,8 +143,8 @@ async function populateProjects() {
     for (const project of featuredProjects) {
         try {
             // Fetch screenshots
-            const screenshots = await fetchRepoScreenshots(project.repoName);
-            const thumbnail = screenshots.length > 0 ? screenshots[0].url : './images/default-project-thumb.png';
+            const screenshots = project.images || await fetchRepoScreenshots(project.repoName);
+            const thumbnail = screenshots.length > 0 ? screenshots[0].url : './images/projects/default-thumb.png';
             
             // Create project card with new layout
             const projectCard = document.createElement('div');
@@ -155,6 +155,7 @@ async function populateProjects() {
             const projectData = {
                 ...project,
                 images: screenshots.map(s => s.url),
+                imageAlts: screenshots.map(s => s.alt),
                 thumbnail: thumbnail
             };
             
@@ -162,10 +163,11 @@ async function populateProjects() {
             const shortDesc = project.shortDescription;
             
             projectCard.innerHTML = `
-                <div class="project-card" data-project="${encodeURIComponent(JSON.stringify(projectData))}">
+                <div class="project-card" role="button" tabindex="0" aria-haspopup="dialog" aria-label="View details for ${project.title}" data-project="${encodeURIComponent(JSON.stringify(projectData))}">
                     <div class="project-card-content">
                         <div class="project-image">
-                            <img src="${thumbnail}" alt="${project.title}">
+                            <img src="${thumbnail}" alt="${screenshots[0]?.alt || project.title}">
+                            ${project.status ? '<span class="project-status"></span>' : ''}
                         </div>
                         <div class="project-info">
                             <h3 class="project-title">${project.title}</h3>
@@ -175,6 +177,7 @@ async function populateProjects() {
                 </div>
             `;
             
+            if (project.status) projectCard.querySelector('.project-status').textContent = project.status;
             projectsContainer.appendChild(projectCard);
         } catch (error) {
             console.error(`Error creating project card for ${project.title}:`, error);
@@ -192,14 +195,33 @@ function addProjectCardListeners() {
             const projectData = JSON.parse(decodeURIComponent(encoded));
             openProjectModal(projectData);
         });
+        card.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                this.click();
+            }
+        });
     });
 }
 
 // Function to open the project modal
+let modalTrigger = null;
+
 function openProjectModal(project) {
+  const modal = document.getElementById('projectModal');
+  if (modal.style.display !== 'block') modalTrigger = document.activeElement;
   // Set modal content
   document.getElementById('modal-title').textContent = project.title;
   document.getElementById('modal-description').textContent = project.description;
+  const status = document.getElementById('modal-status');
+  status.textContent = project.status || '';
+  status.hidden = !project.status;
+  const category = document.getElementById('modal-category');
+  category.textContent = project.category || '';
+  category.hidden = !project.category;
+  const imageNote = document.getElementById('modal-image-note');
+  imageNote.textContent = project.imageNote || '';
+  imageNote.hidden = !project.imageNote;
   
   // Set tags
   const tagsContainer = document.getElementById('modal-tags');
@@ -214,31 +236,25 @@ function openProjectModal(project) {
   });
   
   // Set buttons
-  const githubLink = document.getElementById('modal-github');
-  githubLink.href = project.github;
-  githubLink.className = 'modal-button btn-github';
-
-  const demoLink = document.getElementById('modal-demo');
-  if (project.demo) {
-    demoLink.href = project.demo;
-    demoLink.className = 'modal-button btn-demo';
-    demoLink.style.display = 'inline-block';
-  } else {
-    demoLink.style.display = 'none';
-  }
+  setProjectLink('modal-github', project.github, 'btn-github');
+  setProjectLink('modal-demo', project.demo, 'btn-demo');
   
   // Create carousel
   const carousel = document.getElementById('modal-carousel');
   carousel.innerHTML = '';
+  carousel.style.display = '';
 
   // Filter out the thumbnail/first image from carousel images
-  const carouselImages = project.images.slice(1); // Skip the first image
+  // Explicit image collections include their thumbnail in the gallery.
+  // Keep the existing screenshot-discovery convention for older projects.
+  const imageOffset = project.repoName ? 1 : 0;
+  const carouselImages = project.images.slice(imageOffset);
 
   if (carouselImages.length > 0) {
     carouselImages.forEach((img, index) => {
       const imgElement = document.createElement('img');
       imgElement.src = img;
-      imgElement.alt = `${project.title} screenshot ${index + 1}`;
+      imgElement.alt = project.imageAlts?.[index + imageOffset] || `${project.title} screenshot ${index + 1}`;
       imgElement.className = index === 0 ? 'active' : '';
       carousel.appendChild(imgElement);
     });
@@ -248,7 +264,10 @@ function openProjectModal(project) {
       const dotsContainer = document.createElement('div');
       dotsContainer.className = 'carousel-dots';
       for (let i = 0; i < carouselImages.length; i++) {
-        const dot = document.createElement('span');
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.setAttribute('aria-label', `Show image ${i + 1}`);
+        dot.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
         dot.className = i === 0 ? 'dot active' : 'dot';
         dot.setAttribute('data-index', i);
         dot.addEventListener('click', function() {
@@ -265,7 +284,29 @@ function openProjectModal(project) {
   }
   
   // Show modal
-  document.getElementById('projectModal').style.display = 'block';
+  modal.style.display = 'block';
+  modal.querySelector('.close-modal').focus();
+}
+
+// Only configured absolute HTTP(S) links are eligible for public project buttons.
+// Public visibility is a content decision: never configure private URLs here.
+function setProjectLink(id, url, buttonClass) {
+  const link = document.getElementById(id);
+  let valid = false;
+  try {
+    const parsed = new URL(url);
+    valid = /^https?:$/.test(parsed.protocol) && !parsed.username && !parsed.password;
+  } catch { /* An absent or malformed URL has no button. */ }
+  link.className = `modal-button ${buttonClass}`;
+  link.hidden = !valid;
+  link.style.display = valid ? 'inline-block' : 'none';
+  link.removeAttribute('href');
+  if (valid) link.href = url;
+}
+
+function closeProjectModal() {
+  document.getElementById('projectModal').style.display = 'none';
+  modalTrigger?.focus();
 }
 
 // Function to handle modal carousel slides
@@ -279,6 +320,7 @@ function showSlide(index) {
   
   dots.forEach((dot, i) => {
     dot.className = i === index ? 'dot active' : 'dot';
+    dot.setAttribute('aria-pressed', i === index ? 'true' : 'false');
   });
 }
 
@@ -316,13 +358,30 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Close modal when clicking the X
   document.querySelector('.close-modal').addEventListener('click', function() {
-    document.getElementById('projectModal').style.display = 'none';
+    closeProjectModal();
   });
   
   // Close modal when clicking outside of it
   window.addEventListener('click', function(event) {
     if (event.target === document.getElementById('projectModal')) {
-      document.getElementById('projectModal').style.display = 'none';
+      closeProjectModal();
+    }
+  });
+  document.getElementById('projectModal').addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeProjectModal();
+    } else if (event.key === 'Tab') {
+      const controls = [...this.querySelectorAll('button, a[href]')].filter(el => !el.hidden && el.style.display !== 'none');
+      const first = controls[0];
+      const last = controls[controls.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     }
   });
 });

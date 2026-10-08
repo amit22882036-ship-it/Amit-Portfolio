@@ -2119,6 +2119,55 @@ hr {
 
 
 /* Project Cards */
+.project-status {
+    margin: 0;
+    padding: 3px 9px;
+    border-radius: 4px;
+    background: #e8f4ff;
+    color: #185985;
+    border: 1px solid #b5d9f5;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.project-image .project-status {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.dark-mode .project-status {
+    background: #173a54;
+    color: #d1eaff;
+    border-color: #427a9f;
+}
+
+.project-status[hidden] { display: none; }
+
+#modal-category, #modal-image-note {
+    font-size: 12px;
+    margin: 10px 0;
+}
+
+.close-modal {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    line-height: 1;
+}
+
+.carousel-dots button.dot {
+    border: 0;
+    padding: 0;
+}
+
+.project-card:focus-visible, .project-modal button:focus-visible,
+.project-modal a:focus-visible {
+    outline: 2px solid #2c98f0;
+    outline-offset: 3px;
+}
+
 .project-card {
     background: #fff;
     border-radius: 8px;
@@ -2218,7 +2267,7 @@ hr {
   .project-modal {
 	display: none;
 	position: fixed;
-	z-index: 1000;
+	z-index: 10000;
 	left: 0;
 	top: 0;
 	width: 100%;
@@ -2336,6 +2385,10 @@ hr {
   font-weight: 500;
   text-decoration: none;
   transition: all 0.3s ease;
+  color: white;
+}
+
+.modal-button:focus {
   color: white;
 }
 

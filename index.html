@@ -14,13 +14,13 @@
   <meta property="og:site_name" content="Amit Gertner Portfolio" />
   <meta property="og:title" content="Amit Gertner | Portfolio" />
   <meta property="og:description" content="Data Science and Engineering student at the Technion." />
-  <meta property="og:image" content="https://amit22882036-ship-it.github.io/amitProtfollio/logo.png" />
-  <meta property="og:url" content="https://amit22882036-ship-it.github.io/amitProtfollio/" />
+  <meta property="og:image" content="https://amit22882036-ship-it.github.io/Amit-Portfolio/logo.png" />
+  <meta property="og:url" content="https://amit22882036-ship-it.github.io/Amit-Portfolio/" />
   
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Amit Gertner | Portfolio" />
   <meta name="twitter:description" content="Data Science and Engineering student at the Technion." />
-  <meta name="twitter:image" content="https://amit22882036-ship-it.github.io/amitProtfollio/logo.png" />
+  <meta name="twitter:image" content="https://amit22882036-ship-it.github.io/Amit-Portfolio/logo.png" />
   
   <link rel="icon" type="image/png" sizes="32x32" href="./logo.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="./logo.png" />
@@ -28,7 +28,7 @@
   
   <meta name="theme-color" content="#ffffff" />
   
-  <link rel="canonical" href="https://amit22882036-ship-it.github.io/amitProtfollio/" />
+  <link rel="canonical" href="https://amit22882036-ship-it.github.io/Amit-Portfolio/" />
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Raleway&display=swap" rel="stylesheet" />
@@ -109,17 +109,20 @@
           </div>
         </section>
 
-        <div id="projectModal" class="project-modal">
+        <div id="projectModal" class="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
           <div class="modal-content">
-            <span class="close-modal">&times;</span>
+            <button type="button" class="close-modal" aria-label="Close project details">&times;</button>
             <h2 id="modal-title">Project title</h2>
+            <span id="modal-status" class="project-status" hidden></span>
+            <p id="modal-category" hidden></p>
             <div id="modal-carousel" class="carousel">
               </div>
+            <p id="modal-image-note" hidden></p>
             <p id="modal-description"></p>
             <div id="modal-tags" class="modal-tags"></div>
             <div class="modal-buttons">
-              <a id="modal-demo" href="#" target="_blank" class="btn-demo">Live Demo</a>
-              <a id="modal-github" href="#" target="_blank" class="btn-demo">View Code</a>
+              <a id="modal-demo" target="_blank" rel="noopener noreferrer" class="btn-demo" hidden>Live Demo</a>
+              <a id="modal-github" target="_blank" rel="noopener noreferrer" class="btn-demo" hidden>View Code</a>
             </div>
           </div>
         </div>

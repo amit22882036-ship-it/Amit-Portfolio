@@ -59,7 +59,7 @@ export const skills = [
 
 export const education = [
   {
-    title: "B.Sc. in Data Science and Information",
+    title: "B.Sc. in Data Science and Engineering",
     duration: "2022 - present",
     subtitle: "Technion Israel Institute of Technology",
     details: [
@@ -128,6 +128,23 @@ export const footer = [
 ];
 
 export const featuredProjects = [
+  {
+    title: "AI Agent Control Center",
+    status: "In Development",
+    category: "Full-Stack / AI Engineering",
+    shortDescription: "A full-stack platform for managing and monitoring AI coding agents, featuring persistent task state, isolated workspaces, and real-time execution visibility.",
+    description: "AI Agent Control Center is an in-development, local-first platform for managing and monitoring AI coding agents through a unified dashboard. Built with React, Vite, Python, FastAPI, and SQLite, it integrates with Codex CLI to run agents in isolated task workspaces, preserve task history, and support resumable sessions. The dashboard supports starting and stopping agents, viewing status, and monitoring captured output through REST APIs and Server-Sent Events (SSE). Backend capabilities include task lifecycle management, dependency tracking, managed resource coordination, and controlled workspace integration; these controls are not all available in the dashboard yet. Advanced orchestration continues to evolve during Stage 2 development.",
+    tags: ["Python", "FastAPI", "React", "Vite", "SQLite", "REST APIs", "SSE", "Codex CLI"],
+    github: "https://github.com/amit22882036-ship-it/ai-agent-control-center",
+    demo: null,
+    // Replace these paths and alt texts with product screenshots after Stage 2.
+    imageNote: "Conceptual illustrations — temporary visuals, not product screenshots.",
+    images: [
+      { url: "./images/projects/ai-agent-control-center/orchestration.svg", alt: "Conceptual illustration of a central control node connected to AI agent nodes" },
+      { url: "./images/projects/ai-agent-control-center/coordination.svg", alt: "Conceptual illustration of branching workflows connecting collaborating AI agents" },
+      { url: "./images/projects/ai-agent-control-center/monitoring.svg", alt: "Conceptual illustration of task progress and information flowing between agent nodes" }
+    ]
+  },
   {
     title: "Autonomous Agricultural Advisory Agent",
     shortDescription: "Full-stack AI advisory agent for agriculture.",
