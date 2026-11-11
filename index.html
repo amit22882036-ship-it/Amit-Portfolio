@@ -2,225 +2,137 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  
-  <title>Amit Gertner | Portfolio</title>
-  <meta name="description" content="Portfolio webpage of Amit Gertner - Data Science and Engineering student at the Technion" />
-  <meta name="keywords" content="portfolio, data science, software engineering, Technion, AI, Python, ML" />
+  <title>Amit Gertner · Data Science & Engineering</title>
+  <meta name="description" content="Amit Gertner, Data Science and Engineering student at the Technion. Projects in AI agents, data engineering and applied AI." />
   <meta name="author" content="Amit Gertner" />
-  
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Amit Gertner Portfolio" />
-  <meta property="og:title" content="Amit Gertner | Portfolio" />
-  <meta property="og:description" content="Data Science and Engineering student at the Technion." />
-  <meta property="og:image" content="https://amit22882036-ship-it.github.io/Amit-Portfolio/logo.png" />
-  <meta property="og:url" content="https://amit22882036-ship-it.github.io/Amit-Portfolio/" />
-  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Amit Gertner | Portfolio" />
-  <meta name="twitter:description" content="Data Science and Engineering student at the Technion." />
-  <meta name="twitter:image" content="https://amit22882036-ship-it.github.io/Amit-Portfolio/logo.png" />
-  
-  <link rel="icon" type="image/png" sizes="32x32" href="./logo.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="./logo.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="./logo.png" />
-  
-  <meta name="theme-color" content="#ffffff" />
-  
-  <link rel="canonical" href="https://amit22882036-ship-it.github.io/Amit-Portfolio/" />
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Raleway&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/animate.css" />
-  <link rel="stylesheet" href="css/style.css?v=20261111-6" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 
-  <script src="js/modernizr-2.6.2.min.js"></script>
-  <script type="module" src="index.js?v=20261111-6"></script>
-  <script src="js/profile-card.js"></script>
+  <link rel="canonical" href="https://amit22882036-ship-it.github.io/Amit-Portfolio/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Amit Gertner" />
+  <meta property="og:url" content="https://amit22882036-ship-it.github.io/Amit-Portfolio/" />
+  <meta property="og:title" content="Amit Gertner · Data Science & Engineering" />
+  <meta property="og:description" content="Data Science and Engineering student at the Technion. Click around my desk." />
+  <meta property="og:image" content="https://amit22882036-ship-it.github.io/Amit-Portfolio/assets/img/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Illustration of Amit at his desk, coding on a laptop" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://amit22882036-ship-it.github.io/Amit-Portfolio/assets/img/og-image.jpg" />
+
+  <meta name="theme-color" content="#f6f1e7" id="themeColor" />
+  <link rel="icon" id="favicon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☀️</text></svg>" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="preload" as="image" href="assets/img/hero/desk-day.webp" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <script>
+    // Apply the saved theme before first paint. First visits start in daylight,
+    // so night mode stays a surprise to discover.
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("amit-theme"); } catch (e) {}
+      document.documentElement.dataset.theme = t === "night" ? "night" : "day";
+    })();
+  </script>
 </head>
 
 <body>
-  <div id="colorlib-page">
-    <div class="container-wrap">
+  <a class="skip-link" href="#quick">Skip to the summary</a>
 
-      <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
+  <!-- Day / night switch -->
+  <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to night mode" aria-pressed="false">
+    <svg class="sun" viewBox="0 0 40 40" aria-hidden="true">
+      <circle cx="20" cy="20" r="7.5" />
+      <g class="rays">
+        <line x1="20" y1="3" x2="20" y2="8" /><line x1="20" y1="32" x2="20" y2="37" />
+        <line x1="3" y1="20" x2="8" y2="20" /><line x1="32" y1="20" x2="37" y2="20" />
+        <line x1="8" y1="8" x2="11.5" y2="11.5" /><line x1="28.5" y1="28.5" x2="32" y2="32" />
+        <line x1="8" y1="32" x2="11.5" y2="28.5" /><line x1="28.5" y1="11.5" x2="32" y2="8" />
+      </g>
+    </svg>
+    <svg class="moon" viewBox="0 0 40 40" aria-hidden="true">
+      <path d="M26.5 27.5A11 11 0 0 1 15 9.2a11 11 0 1 0 15.6 13.9 11 11 0 0 1-4.1 4.4z" />
+      <circle class="star s1" cx="30" cy="9" r="1.2" /><circle class="star s2" cx="34" cy="16" r=".9" />
+    </svg>
+  </button>
 
-      <aside id="colorlib-aside" role="complementary" class="border js-fullheight no-print">
-        <button id="darkModeToggle"></button>
-        <div class="text-center">
-          <div class="author-img">
-            <img id="profile-img" alt="Amit Gertner" src="./logo.png" style="width: 200px; height: 200px;"/>
-          </div>
-          <h1 id="colorlib-logo"><a href="./index.html">Amit Gertner</a></h1>
-          <div class="social-links" style="margin: 10px 0;" id="social-links-container">
-            </div>
-        </div>
-        
-        <nav id="colorlib-main-menu" role="navigation" class="navbar" style="padding-top: 2em">
-          <div id="navbar" class="collapse">
-            <ul>
-              <li><a href="#" data-nav-section="about">About</a></li>
-              <li><a href="#" data-nav-section="projects">My Projects</a></li>
-              <li><a href="#" data-nav-section="skills">Skills</a></li>
-              <li><a href="#" data-nav-section="education">Education</a></li>
-              <li><a href="#" data-nav-section="experience">Military Service</a></li>
-              <li><a href="#" data-nav-section="contact">Contact</a></li>
-            </ul>
-          </div>
-        </nav>
-      </aside>
-
-      <div id="colorlib-main">
-
-        <section class="colorlib-about" data-section="about">
-          <div class="colorlib-narrow-content">
-            <div class="row animate-box" data-animate-effect="fadeInLeft">
-              <div class="about-desc">
-                <h1>About</h1>
-                <div id="bio"></div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="colorlib-projects" data-section="projects">
-          <div class="colorlib-narrow-content">
-            <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
-              <div class="about-desc">
-                <h1>My <span style="color: #2c98f0">Projects</span></h1>
-              </div>
-            </div>
-            <div id="projects-container" class="row">
-              </div>
-          </div>
-        </section>
-
-        <template id="agent-control-story">
-          <section class="project-story agent-control-story" aria-label="Project walkthrough">
-            <p>I built AI Agent Control Center to run a team of coding agents on one repository. In one window, I can see who needs an answer, what each helper owns, and which changes are ready to review.</p>
-            <video controls playsinline preload="none" width="1920" height="1080"
-                   aria-label="AI Agent Control Center walkthrough, 45 seconds"
-                   poster="./images/projects/ai-agent-control-center/film-cover.webp">
-              <source src="./images/projects/ai-agent-control-center/AI-Agent-Control-Center-16x9.mp4" type="video/mp4">
-              <track kind="captions" src="./images/projects/ai-agent-control-center/promo.en.vtt" srclang="en" label="English">
-              <a href="./images/projects/ai-agent-control-center/AI-Agent-Control-Center-16x9.mp4">Watch the walkthrough</a>
-            </video>
-            <h3>How agents work together</h3>
-            <p>A lead can delegate parts of a task to helpers. The backend checks capacity, delegation depth and overlapping work before starting them. Each helper works in its own Git worktree. The lead can accept a result after integration checks pass, and you can inspect the changed files before applying the finished task to your project.</p>
-            <h3>Where people step in</h3>
-            <p>Connect Claude Code, Codex or Gemini CLI through your own account. The Work Map shows who delegated what, and the live Work List brings questions to the top. Reply in place, redirect an agent, or pause and resume a task. Even with thousands of tasks, you can jump to one by keyboard. Each state has a label and an icon. Light and dark themes respect higher contrast and reduced-motion preferences.</p>
-            <h3>What survives a restart</h3>
-            <p>SQLite keeps task history and records integration progress for recovery. Windows Job Objects tie each process tree to the app so a stop or crash also terminates its workers. Each task has an explicit access level, and helpers need separate permission for Full Access. The Windows installer includes a demo mode you can explore without a model account.</p>
-            <h3>Inside the app</h3>
-          </section>
-        </template>
-
-        <template id="hotel-story">
-          <section class="project-story" aria-label="Hotel analysis walkthrough">
-            <p>A listing can promise a quiet, well-connected hotel. Do guests describe the same place? Check-in To Reality brings listing claims, guest reviews and nearby places together so travelers can explore the gaps on a map.</p>
-            <h3>What counts as nearby?</h3>
-            <p>The PySpark pipeline groups hotels and places of interest by city and geohash. It searches neighboring cells, then checks the actual distance before counting a place as nearby. This keeps a hotel near a cell boundary connected to amenities across the street.</p>
-            <h3>How the model was evaluated</h3>
-            <p>The notebooks extract complaints, praise and sentiment from review text and compare Random Forest and gradient-boosted regressors on a held-out split using RMSE, MAE and R². Guest review scores provide the prediction target.</p>
-            <h3>Explore the results</h3>
-          </section>
-        </template>
-
-        <template id="agri-story">
-          <section class="project-story" aria-label="Agricultural assistant walkthrough">
-            <p>A grower can ask a question in Hebrew, add a location, and follow up in the same conversation. The assistant combines guidance from agricultural manuals with historical weather observations for the area.</p>
-            <h3>Finding relevant guidance</h3>
-            <p>The backend splits agricultural PDFs into passages and indexes them in Pinecone. A LangChain retrieval tool searches with several phrasings of a question to find relevant passages even when a grower uses different wording from the manual.</p>
-            <h3>Putting the weather in context</h3>
-            <p>A separate tool resolves city names and summarizes stored observations by day. It caches those summaries so a follow-up about the same area can reuse them.</p>
-            <h3>A conversation in Hebrew</h3>
-          </section>
-        </template>
-
-        <div id="projectModal" class="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-          <div class="modal-content">
-            <button type="button" class="close-modal" aria-label="Close project details">&times;</button>
-            <h2 id="modal-title">Project title</h2>
-            <span id="modal-status" class="project-status" hidden></span>
-            <p id="modal-category" hidden></p>
-            <div id="modal-carousel" class="carousel">
-              </div>
-            <p id="modal-image-note" hidden></p>
-            <p id="modal-description"></p>
-            <div id="modal-tags" class="modal-tags"></div>
-            <div class="modal-buttons">
-              <a id="modal-demo" target="_blank" rel="noopener noreferrer" class="btn-demo" hidden>Live Demo</a>
-              <a id="modal-core" target="_blank" rel="noopener noreferrer" hidden>Core notebooks</a>
-              <a id="modal-github" target="_blank" rel="noopener noreferrer" class="btn-demo" hidden>View Code</a>
-            </div>
-          </div>
-        </div>
-        
-        <section class="colorlib-skills" data-section="skills">
-          <div class="colorlib-narrow-content">
-            <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
-              <div class="about-desc">
-                <h1>Skills</h1>
-              </div>
-            </div>
-            <div id="skills" class="row">
-                </div>
-          </div>
-        </section>
-
-        <section class="colorlib-education" data-section="education">
-          <div class="colorlib-narrow-content">
-            <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
-              <div class="about-desc">
-                <h1>Education</h1>
-              </div>
-            </div>
-            <div class="timeline-centered" id="education"></div>
-          </div>
-        </section>
-
-        <section class="colorlib-experience" data-section="experience">
-          <div class="colorlib-narrow-content">
-            <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
-              <div class="about-desc">
-                <h1>Military Service</h1>
-              </div>
-            </div>
-            <div class="timeline-centered" id="experience"></div>
-          </div>
-        </section>
-
-        <section class="colorlib-contact" data-section="contact">
-          <div class="colorlib-narrow-content">
-            <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
-              <div class="about-desc">
-                <h1>Contact</h1>
-                <p>Connect on <a href="https://www.linkedin.com/in/amit-gertner" target="_blank">LinkedIn</a> or see my work on <a href="https://github.com/amit22882036-ship-it" target="_blank">GitHub</a>.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="colorlib-footer no-print" data-section="footer">
-          <div class="colorlib-narrow-content">
-            <footer class="footer" id="footer">
-              <p>Made with by Amit Gertner</p>
-              <p>Designed and developed using GitHub Pages</p>
-            </footer>
-          </div>
-        </section>
-
+  <header class="hero" id="top">
+    <div class="scene-wrap">
+      <div class="scene" id="scene">
+        <img class="scene-img day" src="assets/img/hero/desk-day.webp" alt="Illustration of Amit at his desk, coding on a laptop" width="1090" height="441" />
+        <img class="scene-img night" src="assets/img/hero/desk-night.webp" alt="" aria-hidden="true" width="1090" height="441" loading="lazy" />
+        <div class="hotspots" id="hotspots" role="group" aria-label="Things on Amit's desk. Each one opens part of the portfolio."></div>
       </div>
     </div>
-  </div>
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/main.js"></script>
+    <div class="intro">
+      <p class="intro-text" id="introText">
+        I’m Amit, a <span class="mark" data-mark="underline">Data Science &amp; Engineering student at the Technion</span>.
+        I build things where <span class="mark" data-mark="highlight">software, data and AI</span> meet: from agents that
+        delegate work to each other, to pipelines that check whether a hotel is as quiet as it claims.
+        I love basketball, anime and anything sweet, and I can’t leave a system alone until I understand how it works.
+      </p>
+      <div class="signature" id="signature" tabindex="0" aria-describedby="sigHint">
+        <span class="sig-name">Amit Gertner</span>
+      </div>
+      <p class="sig-hint" id="sigHint">
+        <span class="day-only"><span class="pointer-only">Psst… hover my name (or anything on the desk) to see what’s clickable.</span><span class="touch-only">Psst… tap anything with a dot on my desk.</span></span>
+        <span class="night-only">Night shift. The best bugs come out after midnight.</span>
+      </p>
+    </div>
+  </header>
 
-  <script type="module" src="user-data/urls.js"></script>
-  
+  <main>
+    <!-- Fast lane for recruiters -->
+    <section class="quick" id="quick" aria-labelledby="quickTitle">
+      <div class="quick-card">
+        <div class="quick-head">
+          <h2 id="quickTitle"><span class="hand">In a hurry?</span> The 20-second version</h2>
+        </div>
+        <dl class="facts" id="facts"></dl>
+        <div class="cta-row" id="ctaRow"></div>
+      </div>
+    </section>
+
+    <!-- Featured projects -->
+    <section class="projects" id="projects" aria-labelledby="projectsTitle">
+      <div class="section-head">
+        <h2 id="projectsTitle"><span class="kicker" aria-hidden="true">pinned to the board</span>Things I’ve built</h2>
+      </div>
+      <div class="project-list" id="projectList"></div>
+    </section>
+
+    <!-- Journey timeline -->
+    <section class="journey" id="journey" aria-labelledby="journeyTitle">
+      <div class="section-head">
+        <h2 id="journeyTitle"><span class="kicker" aria-hidden="true">how I got to this desk</span>The journey so far</h2>
+      </div>
+      <div class="timeline" id="timeline"></div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <h2><span class="kicker" aria-hidden="true">the coffee’s on me</span>Let’s talk</h2>
+    <p class="footer-text">Whether it’s a role, a project or a recommendation for my next anime, I’d love to hear from you.</p>
+    <div class="cta-row center" id="footerCta"></div>
+    <p class="fine">Designed and built by Amit Gertner · <span id="year"></span></p>
+  </footer>
+
+  <!-- One dialog, many contents -->
+  <dialog class="modal" id="modal" aria-labelledby="modalTitle">
+    <div class="modal-inner">
+      <button class="modal-close" type="button" id="modalClose" aria-label="Close"><span aria-hidden="true">esc</span></button>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </dialog>
+
+  <script src="https://unpkg.com/rough-notation@0.5.1/lib/rough-notation.iife.js" defer></script>
+  <script src="js/data.js" defer></script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>
