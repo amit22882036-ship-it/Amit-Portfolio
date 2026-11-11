@@ -5,7 +5,7 @@ import {
   experience,
   featuredProjects, // Import the featured projects
   socialLinks, // Import social links
-} from "./user-data/data.js?v=20261111-3";
+} from "./user-data/data.js?v=20261111-4";
 import { fetchRepoScreenshots } from './js/github-api.js';
 import { getTagColor } from './user-data/tag-colors.js'; // Add import at the top
 

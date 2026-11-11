@@ -64,7 +64,8 @@ export const education = [
     details: [
       "Data Analysis and Visualization · 98/100",
       "Optimization Methods in Machine Learning · 98/100",
-      "Foundations and Applications of Artificial Intelligence · 96/100"
+      "Foundations and Applications of Artificial Intelligence · 96/100",
+      "Worked as a guide at the Technion Visitors Center, leading tours for prospective students, donors and visiting delegations from Israel and abroad."
     ],
     tags: [],
     icon: "graduation-cap",
@@ -93,22 +94,15 @@ export const education = [
 
 export const experience = [
   {
-    title: "Visitor Guide",
-    subtitle: "Technion Visitors Center",
-    details: [
-      "Guided prospective students, donors and visiting delegations from Israel and abroad, including ambassadors. Adapted each tour to the audience’s background and questions."
-    ],
-    tags: ["Hebrew · Native", "English · Fluent"],
-    icon: "comments",
-  },
-  {
     title: "Israel Defense Forces (IDF) – Artillery Corps",
     duration: "2017 - 2020",
     subtitle: "Combat Soldier, Battalion Commander's Forward Command Team",
     details: [
-      "Operated communications systems alongside senior officers. Received a commendation from the battalion commander."
+      "Selected to serve in the Battalion Commander's Forward Command Team, working directly with senior officers in highly dynamic and high-pressure environments.",
+      "Operated communication and command-and-control systems, requiring quick decision-making, multitasking, and extreme reliability.",
+      "Honorable discharge with a certificate of excellence/recommendation from the Battalion Commander."
     ],
-    tags: [],
+    tags: ["Leadership", "Decision Making", "Multitasking", "Command & Control"],
     icon: "star",
   },
 ];
