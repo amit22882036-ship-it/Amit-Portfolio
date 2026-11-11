@@ -220,6 +220,10 @@ function openProjectModal(project) {
   const category = document.getElementById('modal-category');
   category.textContent = project.category || '';
   category.hidden = !project.category;
+  modal.querySelector('.agent-control-story')?.remove();
+  if (project.detailTemplate) {
+    category.after(document.getElementById(project.detailTemplate).content.cloneNode(true));
+  }
   const imageNote = document.getElementById('modal-image-note');
   imageNote.textContent = project.imageNote || '';
   imageNote.hidden = !project.imageNote;
@@ -317,7 +321,9 @@ function setProjectLink(id, url, buttonClass) {
 }
 
 function closeProjectModal() {
-  document.getElementById('projectModal').style.display = 'none';
+  const modal = document.getElementById('projectModal');
+  modal.querySelector('video')?.pause();
+  modal.style.display = 'none';
   modalTrigger?.focus();
 }
 
@@ -392,7 +398,7 @@ document.addEventListener('DOMContentLoaded', () => {
       closeProjectModal();
     } else if ((event.key === 'ArrowLeft' || event.key === 'ArrowRight') &&
                !event.altKey && !event.ctrlKey && !event.metaKey &&
-               !event.target.closest('input, textarea, select, [contenteditable]:not([contenteditable="false"])') &&
+               !event.target.closest('video, input, textarea, select, [contenteditable]:not([contenteditable="false"])') &&
                this.style.display === 'block' &&
                this.querySelectorAll('#modal-carousel img').length > 1) {
       event.preventDefault();

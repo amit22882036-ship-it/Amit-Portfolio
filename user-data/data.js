@@ -131,17 +131,19 @@ export const featuredProjects = [
   {
     title: "AI Agent Control Center",
     status: "In Development",
-    category: "Full-Stack / AI Engineering",
-    shortDescription: "A full-stack platform for managing and monitoring AI coding agents, featuring persistent task state, isolated workspaces, and real-time execution visibility.",
-    description: "AI Agent Control Center is an in-development, local-first platform for managing and monitoring AI coding agents through a unified dashboard. Built with React, Vite, Python, FastAPI, and SQLite, it integrates with Codex CLI to run agents in isolated task workspaces, preserve task history, and support resumable sessions. The dashboard supports starting and stopping agents, viewing status, and monitoring captured output through REST APIs and Server-Sent Events (SSE). Backend capabilities include task lifecycle management, dependency tracking, managed resource coordination, and controlled workspace integration; these controls are not all available in the dashboard yet. Advanced orchestration continues to evolve during Stage 2 development.",
-    tags: ["Python", "FastAPI", "React", "Vite", "SQLite", "REST APIs", "SSE", "Codex CLI"],
+    category: "Windows desktop app · Multi-agent orchestration",
+    shortDescription: "Give a lead coding agent a task, watch its helpers work in parallel, and review their changes in one Windows app.",
+    description: "I verified the delegation workflow end to end with a real Codex lead and two helpers. The lead accepted both helpers’ results after integration. Claude Code completed an authenticated run, and Gemini CLI was exercised with a simulated provider. Automated backend, UI and browser tests cover the system using temporary databases, real Git repositories and simulated CLIs.",
+    detailTemplate: "agent-control-story",
+    tags: ["Electron", "React", "Python", "FastAPI", "SQLite", "Git worktrees", "Server-Sent Events"],
     github: "https://github.com/amit22882036-ship-it/ai-agent-control-center",
     demo: null,
-    thumbnail: { url: "./images/projects/ai-agent-control-center/ai-agent-control-center-logo.png", alt: "AI Agent Control Center logo with connected robot agents around a central control node" },
-    imageNote: "Project screenshots: agent workspace and agent details.",
+    thumbnail: { url: "./images/projects/ai-agent-control-center/app-mark.svg", alt: "AI Agent Control Center logo, a lead agent connected to two helpers" },
+    imageNote: "Screenshots from the desktop interface using demo tasks.",
     images: [
-      { url: "./images/projects/ai-agent-control-center/dashboard-clean.png", alt: "AI Agent Control Center dashboard showing the agent workspace, new-agent form, and past work" },
-      { url: "./images/projects/ai-agent-control-center/agent-details-clean.png", alt: "AI Agent Control Center workspace with an agent details panel showing status, actions, and output history" }
+      { url: "./images/projects/ai-agent-control-center/delegation-map.webp", alt: "Work Map for a CSV import pipeline. One helper needs an answer, another is writing a report, and the CLI changes have been integrated." },
+      { url: "./images/projects/ai-agent-control-center/agent-reply.webp", alt: "Work List with an agent’s question open and a reply being typed beside the task." },
+      { url: "./images/projects/ai-agent-control-center/task-detail.webp", alt: "Dark-mode task view showing the CSV pipeline request, progress, results and responsible agent." }
     ]
   },
   {

@@ -109,6 +109,26 @@
           </div>
         </section>
 
+        <template id="agent-control-story">
+          <section class="agent-control-story" aria-label="Project walkthrough">
+            <p>I built AI Agent Control Center to run a team of coding agents on one repository. In one window, I can see who needs an answer, what each helper owns, and which changes are ready to review.</p>
+            <video controls playsinline preload="none" width="1920" height="1080"
+                   aria-label="AI Agent Control Center walkthrough, 45 seconds"
+                   poster="./images/projects/ai-agent-control-center/film-cover.webp">
+              <source src="./images/projects/ai-agent-control-center/AI-Agent-Control-Center-16x9.mp4" type="video/mp4">
+              <track kind="captions" src="./images/projects/ai-agent-control-center/promo.en.vtt" srclang="en" label="English">
+              <a href="./images/projects/ai-agent-control-center/AI-Agent-Control-Center-16x9.mp4">Watch the walkthrough</a>
+            </video>
+            <h3>How agents work together</h3>
+            <p>A lead can delegate parts of a task to helpers. The backend checks capacity, delegation depth and overlapping work before starting them. Each helper works in its own Git worktree. The lead can accept a result after integration checks pass, and you can inspect the changed files before applying the finished task to your project.</p>
+            <h3>Where people step in</h3>
+            <p>Connect Claude Code, Codex or Gemini CLI through your own account. The Work Map shows who delegated what, and the live Work List brings questions to the top. Reply in place, redirect an agent, or pause and resume a task. Even with thousands of tasks, you can jump to one by keyboard. Each state has a label and an icon. Light and dark themes respect higher contrast and reduced-motion preferences.</p>
+            <h3>What survives a restart</h3>
+            <p>SQLite keeps task history and records integration progress for recovery. Windows Job Objects tie each process tree to the app so a stop or crash also terminates its workers. Each task has an explicit access level, and helpers need separate permission for Full Access. The Windows installer includes a demo mode you can explore without a model account.</p>
+            <h3>Inside the app</h3>
+          </section>
+        </template>
+
         <div id="projectModal" class="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
           <div class="modal-content">
             <button type="button" class="close-modal" aria-label="Close project details">&times;</button>
