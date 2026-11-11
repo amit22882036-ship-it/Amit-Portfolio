@@ -130,7 +130,6 @@ export const footer = [
 export const featuredProjects = [
   {
     title: "AI Agent Control Center",
-    status: "In Development",
     category: "Windows desktop app · Multi-agent orchestration",
     shortDescription: "Give a lead coding agent a task, watch its helpers work in parallel, and review their changes in one Windows app.",
     description: "I verified the delegation workflow end to end with a real Codex lead and two helpers. The lead accepted both helpers’ results after integration. Claude Code completed an authenticated run, and Gemini CLI was exercised with a simulated provider. Automated backend, UI and browser tests cover the system using temporary databases, real Git repositories and simulated CLIs.",
