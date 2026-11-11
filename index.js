@@ -5,7 +5,7 @@ import {
   experience,
   featuredProjects, // Import the featured projects
   socialLinks, // Import social links
-} from "./user-data/data.js?v=20261111-2";
+} from "./user-data/data.js?v=20261111-3";
 import { fetchRepoScreenshots } from './js/github-api.js';
 import { getTagColor } from './user-data/tag-colors.js'; // Add import at the top
 
@@ -50,6 +50,12 @@ function populateExpEdu(items, id) {
     subtitle.className = "timeline-sublabel";
     subtitle.innerHTML = item.subtitle;
     label.append(subtitle);
+
+    if (item.overview) {
+      const overview = document.createElement("p");
+      overview.textContent = item.overview;
+      label.append(overview);
+    }
 
     item.details.forEach((detail) => {
       const p = document.createElement("p");

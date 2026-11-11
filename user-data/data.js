@@ -14,7 +14,8 @@ export const socialLinks = [
 ];
 
 export const bio = [
-  "I’m Amit Gertner, a <strong>Data Science and Engineering student at the Technion</strong>. I built a Windows app that lets coding agents delegate work to each other, and a data pipeline that compares hotel listings with what guests actually report."
+  "I’m Amit Gertner, a <strong>Data Science and Engineering student at the Technion</strong>. I got my start in engineering as the drafting lead on my high school’s FIRST Robotics team. I liked seeing a teammate take a drawing and turn it into part of a working robot. Guiding visitors at the Technion taught me something I still use when building software: listen to the question first. A prospective student and a visiting delegation can walk across the same campus and be curious about entirely different things.",
+  "I bring that curiosity to team projects. I like working out what someone is trying to understand, tracing the answer back to the data, and building a tool they can use to explore it themselves. For Check-in To Reality, that meant connecting hotel listings with guest reviews and putting the results on a map. With AI Agent Control Center, it meant making it easy to see which coding agent needs a decision and which one can keep working."
 ];
 
 export const skills = [
@@ -59,6 +60,7 @@ export const education = [
     title: "B.Sc. in Data Science and Engineering",
     duration: "2022 - present",
     subtitle: "Technion Israel Institute of Technology",
+    overview: "My degree combines computer science, statistics and machine learning. Algorithms, data structures and database systems taught me how to organize and process data. Statistics and optimization gave me ways to compare models and judge how well they work on new examples. I brought those subjects together in my hotel analysis, using distributed processing to join location data with reviews and evaluating models against guest scores.",
     details: [
       "Data Analysis and Visualization · 98/100",
       "Optimization Methods in Machine Learning · 98/100",
