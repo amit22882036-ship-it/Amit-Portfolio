@@ -5,7 +5,7 @@ import {
   experience,
   featuredProjects, // Import the featured projects
   socialLinks, // Import social links
-} from "./user-data/data.js?v=20261111-5";
+} from "./user-data/data.js?v=20261111-6";
 import { fetchRepoScreenshots } from './js/github-api.js';
 import { getTagColor } from './user-data/tag-colors.js'; // Add import at the top
 
@@ -63,6 +63,22 @@ function populateExpEdu(items, id) {
       p.innerHTML = `&blacksquare; ${detail}`;
       label.append(p);
     });
+
+    if (item.grades?.length) {
+      const heading = document.createElement("h3");
+      heading.className = "grades-heading";
+      heading.textContent = "Selected Course Grades";
+      const grades = document.createElement("dl");
+      grades.className = "course-grades";
+      for (const [course, score] of item.grades) {
+        const name = document.createElement("dt");
+        name.textContent = course;
+        const grade = document.createElement("dd");
+        grade.textContent = score + "/100";
+        grades.append(name, grade);
+      }
+      label.append(heading, grades);
+    }
 
     const tagsDiv = document.createElement("div");
     item.tags.forEach((tag) => {

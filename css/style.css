@@ -925,6 +925,25 @@ body.offcanvas .colorlib-nav-toggle {
 	margin: 0 0px 5px;
 }
 
+.timeline-label .grades-heading {
+    margin: 16px 0 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: inherit;
+}
+
+.timeline-label .course-grades {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 4px 16px;
+    max-width: 48ch;
+    margin: 0;
+    font-size: 13px;
+}
+
+.course-grades dt { font-weight: normal; }
+.course-grades dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; }
+
 .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label .timeline-text {
 	margin-bottom: 0px;
 	font-size: 13px;

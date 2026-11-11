@@ -62,10 +62,14 @@ export const education = [
     subtitle: "Technion Israel Institute of Technology",
     overview: "My degree combines computer science, statistics and machine learning. Algorithms, data structures and database systems taught me how to organize and process data. Statistics and optimization gave me ways to compare models and judge how well they work on new examples. I brought those subjects together in my hotel analysis, using distributed processing to join location data with reviews and evaluating models against guest scores.",
     details: [
-      "Data Analysis and Visualization · 98/100",
-      "Optimization Methods in Machine Learning · 98/100",
-      "Foundations and Applications of Artificial Intelligence · 96/100",
       "Worked as a guide at the Technion Visitors Center, leading tours for prospective students, donors and visiting delegations from Israel and abroad."
+    ],
+    grades: [
+      ["The Human Factor in Data Collection", 100],
+      ["Data Analysis and Visualization", 98],
+      ["Optimization Methods in Machine Learning", 98],
+      ["Statistics 2", 97],
+      ["Foundations and Applications of Artificial Intelligence", 96]
     ],
     tags: [],
     icon: "graduation-cap",
