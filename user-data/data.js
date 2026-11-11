@@ -14,8 +14,8 @@ export const socialLinks = [
 ];
 
 export const bio = [
-  "I’m Amit Gertner, a <strong>Data Science and Engineering student at the Technion</strong>. I got my start in engineering as the drafting lead on my high school’s FIRST Robotics team. I liked seeing a teammate take a drawing and turn it into part of a working robot. Guiding visitors at the Technion taught me something I still use when building software: listen to the question first. A prospective student and a visiting delegation can walk across the same campus and be curious about entirely different things.",
-  "I bring that curiosity to team projects. I like working out what someone is trying to understand, tracing the answer back to the data, and building a tool they can use to explore it themselves. For Check-in To Reality, that meant connecting hotel listings with guest reviews and putting the results on a map. With AI Agent Control Center, it meant making it easy to see which coding agent needs a decision and which one can keep working."
+  "I’m Amit Gertner, a <strong>Data Science and Engineering student at the Technion</strong>. I built AI Agent Control Center so a developer can give one coding agent a task, watch it delegate work, and review the changes in one place. The part I wanted to get right was bringing parallel changes back together. I tested that with a Codex lead agent and two helpers. Each helper worked in its own Git workspace, and the lead accepted both results after the integration checks passed.",
+  "My first engineering team built robots. As drafting lead, I had to make drawings clear enough for a teammate to build from. Later, guiding visitors at the Technion taught me to ask what someone wants to understand before I start explaining. I bring both habits to software and data work. In Check-in To Reality, I connected hotel listings, guest reviews and nearby places, then put the results on a map so travelers could judge a hotel’s claims for themselves."
 ];
 
 export const skills = [
