@@ -33,11 +33,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Raleway&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/animate.css" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css?v=20261111-2" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 
   <script src="js/modernizr-2.6.2.min.js"></script>
-  <script type="module" src="index.js"></script>
+  <script type="module" src="index.js?v=20261111-2"></script>
   <script src="js/profile-card.js"></script>
 </head>
 
@@ -51,7 +51,7 @@
         <button id="darkModeToggle"></button>
         <div class="text-center">
           <div class="author-img">
-            <img id="profile-img" alt="profile-img" src="./logo.png" style="width: 200px; height: 200px;"/>
+            <img id="profile-img" alt="Amit Gertner" src="./logo.png" style="width: 200px; height: 200px;"/>
           </div>
           <h1 id="colorlib-logo"><a href="./index.html">Amit Gertner</a></h1>
           <div class="social-links" style="margin: 10px 0;" id="social-links-container">
@@ -62,10 +62,10 @@
           <div id="navbar" class="collapse">
             <ul>
               <li><a href="#" data-nav-section="about">About</a></li>
-              <li><a href="#" data-nav-section="skills">Skills</a></li>
               <li><a href="#" data-nav-section="projects">My Projects</a></li>
+              <li><a href="#" data-nav-section="skills">Skills</a></li>
               <li><a href="#" data-nav-section="education">Education</a></li>
-              <li><a href="#" data-nav-section="experience">Military Service</a></li>
+              <li><a href="#" data-nav-section="experience">Experience</a></li>
               <li><a href="#" data-nav-section="contact">Contact</a></li>
             </ul>
           </div>
@@ -85,18 +85,6 @@
           </div>
         </section>
 
-        <section class="colorlib-skills" data-section="skills">
-          <div class="colorlib-narrow-content">
-            <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
-              <div class="about-desc">
-                <h1>Skills</h1>
-              </div>
-            </div>
-            <div id="skills" class="row">
-                </div>
-          </div>
-        </section>
-
         <section class="colorlib-projects" data-section="projects">
           <div class="colorlib-narrow-content">
             <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
@@ -110,7 +98,7 @@
         </section>
 
         <template id="agent-control-story">
-          <section class="agent-control-story" aria-label="Project walkthrough">
+          <section class="project-story agent-control-story" aria-label="Project walkthrough">
             <p>I built AI Agent Control Center to run a team of coding agents on one repository. In one window, I can see who needs an answer, what each helper owns, and which changes are ready to review.</p>
             <video controls playsinline preload="none" width="1920" height="1080"
                    aria-label="AI Agent Control Center walkthrough, 45 seconds"
@@ -129,6 +117,28 @@
           </section>
         </template>
 
+        <template id="hotel-story">
+          <section class="project-story" aria-label="Hotel analysis walkthrough">
+            <p>A listing can promise a quiet, well-connected hotel. Do guests describe the same place? Check-in To Reality brings listing claims, guest reviews and nearby places together so travelers can explore the gaps on a map.</p>
+            <h3>What counts as nearby?</h3>
+            <p>The PySpark pipeline groups hotels and places of interest by city and geohash. It searches neighboring cells, then checks the actual distance before counting a place as nearby. This keeps a hotel near a cell boundary connected to amenities across the street.</p>
+            <h3>How the model was evaluated</h3>
+            <p>The notebooks extract complaints, praise and sentiment from review text and compare Random Forest and gradient-boosted regressors on a held-out split using RMSE, MAE and R². Guest review scores provide the prediction target.</p>
+            <h3>Explore the results</h3>
+          </section>
+        </template>
+
+        <template id="agri-story">
+          <section class="project-story" aria-label="Agricultural assistant walkthrough">
+            <p>A grower can ask a question in Hebrew, add a location, and follow up in the same conversation. The assistant combines guidance from agricultural manuals with historical weather observations for the area.</p>
+            <h3>Finding relevant guidance</h3>
+            <p>The backend splits agricultural PDFs into passages and indexes them in Pinecone. A LangChain retrieval tool searches with several phrasings of a question to find relevant passages even when a grower uses different wording from the manual.</p>
+            <h3>Putting the weather in context</h3>
+            <p>A separate tool resolves city names and summarizes stored observations by day. It caches those summaries so a follow-up about the same area can reuse them.</p>
+            <h3>A conversation in Hebrew</h3>
+          </section>
+        </template>
+
         <div id="projectModal" class="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
           <div class="modal-content">
             <button type="button" class="close-modal" aria-label="Close project details">&times;</button>
@@ -142,11 +152,24 @@
             <div id="modal-tags" class="modal-tags"></div>
             <div class="modal-buttons">
               <a id="modal-demo" target="_blank" rel="noopener noreferrer" class="btn-demo" hidden>Live Demo</a>
+              <a id="modal-core" target="_blank" rel="noopener noreferrer" hidden>Core notebooks</a>
               <a id="modal-github" target="_blank" rel="noopener noreferrer" class="btn-demo" hidden>View Code</a>
             </div>
           </div>
         </div>
         
+        <section class="colorlib-skills" data-section="skills">
+          <div class="colorlib-narrow-content">
+            <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
+              <div class="about-desc">
+                <h1>Skills</h1>
+              </div>
+            </div>
+            <div id="skills" class="row">
+                </div>
+          </div>
+        </section>
+
         <section class="colorlib-education" data-section="education">
           <div class="colorlib-narrow-content">
             <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
@@ -162,7 +185,7 @@
           <div class="colorlib-narrow-content">
             <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
               <div class="about-desc">
-                <h1>Military Service</h1>
+                <h1>Experience</h1>
               </div>
             </div>
             <div class="timeline-centered" id="experience"></div>
@@ -174,7 +197,7 @@
             <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
               <div class="about-desc">
                 <h1>Contact</h1>
-                <p>Feel free to connect with me via <a href="https://www.linkedin.com/in/amit-gertner" target="_blank">LinkedIn</a> or visit my <a href="https://github.com/amit22882036-ship-it" target="_blank">GitHub</a>.</p>
+                <p>Connect on <a href="https://www.linkedin.com/in/amit-gertner" target="_blank">LinkedIn</a> or see my work on <a href="https://github.com/amit22882036-ship-it" target="_blank">GitHub</a>.</p>
               </div>
             </div>
           </div>
@@ -197,7 +220,6 @@
   <script src="js/jquery.waypoints.min.js"></script>
   <script src="js/main.js"></script>
 
-  <script type="module" src="user-data/data.js"></script>
   <script type="module" src="user-data/urls.js"></script>
   
 </body>

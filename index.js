@@ -5,7 +5,7 @@ import {
   experience,
   featuredProjects, // Import the featured projects
   socialLinks, // Import social links
-} from "./user-data/data.js";
+} from "./user-data/data.js?v=20261111-2";
 import { fetchRepoScreenshots } from './js/github-api.js';
 import { getTagColor } from './user-data/tag-colors.js'; // Add import at the top
 
@@ -38,7 +38,12 @@ function populateExpEdu(items, id) {
     label.className = "timeline-label";
 
     const title = document.createElement("h2");
-    title.innerHTML = `${item.title} <span>${item.duration}</span>`;
+    title.textContent = item.title;
+    if (item.duration) {
+      const dates = document.createElement('span');
+      dates.textContent = item.duration;
+      title.append(' ', dates);
+    }
     label.append(title);
 
     const subtitle = document.createElement("span");
@@ -62,7 +67,7 @@ function populateExpEdu(items, id) {
       span.style.color = "#ffffff";  // White text for better contrast
       tagsDiv.append(span);
     });
-    label.append(tagsDiv);
+    if (item.tags.length) label.append(tagsDiv);
 
     inner.append(icon);
     inner.append(label);
@@ -179,6 +184,22 @@ async function populateProjects() {
             `;
             
             if (project.status) projectCard.querySelector('.project-status').textContent = project.status;
+            if (project.videoAction) {
+                const watch = document.createElement('button');
+                watch.type = 'button';
+                watch.className = 'watch-demo';
+                watch.textContent = project.videoAction;
+                watch.setAttribute('aria-haspopup', 'dialog');
+                watch.addEventListener('click', () => {
+                    openProjectModal(projectData);
+                    const video = document.querySelector('#projectModal video');
+                    video.focus();
+                    video.play().catch(() => {
+                        // The native controls remain available if the browser blocks playback.
+                    });
+                });
+                projectCard.append(watch);
+            }
             projectsContainer.appendChild(projectCard);
         } catch (error) {
             console.error(`Error creating project card for ${project.title}:`, error);
@@ -220,7 +241,7 @@ function openProjectModal(project) {
   const category = document.getElementById('modal-category');
   category.textContent = project.category || '';
   category.hidden = !project.category;
-  modal.querySelector('.agent-control-story')?.remove();
+  modal.querySelector('.project-story')?.remove();
   if (project.detailTemplate) {
     category.after(document.getElementById(project.detailTemplate).content.cloneNode(true));
   }
@@ -243,6 +264,8 @@ function openProjectModal(project) {
   // Set buttons
   setProjectLink('modal-github', project.github, 'btn-github');
   setProjectLink('modal-demo', project.demo, 'btn-demo');
+  setProjectLink('modal-core', project.coreRepo, 'btn-github');
+  document.getElementById('modal-github').textContent = project.coreRepo ? 'Web app code' : 'View Code';
   
   // Create carousel
   const carousel = document.getElementById('modal-carousel');
@@ -301,6 +324,7 @@ function openProjectModal(project) {
   
   // Show modal
   modal.style.display = 'block';
+  modal.querySelector('.modal-content').scrollTop = 0;
   modal.querySelector('.close-modal').focus();
 }
 

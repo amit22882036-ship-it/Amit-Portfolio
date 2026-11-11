@@ -14,10 +14,7 @@ export const socialLinks = [
 ];
 
 export const bio = [
-  "Hello, I'm Amit Gertner!",
-  "A <strong>Data Science and Engineering student</strong> at the Technion, bridging the gap between complex data analysis and robust software development.",
-  "I specialize in building end-to-end, data-driven applications. My toolset includes Python, Spark, and SQL for data processes, alongside modern web frameworks (like FastAPI and Flask) for building scalable systems.",
-  "I am passionate about solving complex problems and am currently seeking opportunities to leverage my analytical and engineering skills to build impactful, real-world solutions."
+  "I’m Amit Gertner, a <strong>Data Science and Engineering student at the Technion</strong>. I built a Windows app that lets coding agents delegate work to each other, and a data pipeline that compares hotel listings with what guests actually report."
 ];
 
 export const skills = [
@@ -33,7 +30,7 @@ export const skills = [
       "Spark",
       "PySpark",
       "Matplotlib",
-      "NLP (BERT)",
+      "NLP & sentiment analysis",
     ],
   },
   {
@@ -63,10 +60,11 @@ export const education = [
     duration: "2022 - present",
     subtitle: "Technion Israel Institute of Technology",
     details: [
-      "Studied courses: Software Engineering, Data Structures & Algorithms, Computer Architecture & Operating Systems, Distributed Data Management, Database Management, Computability and Complexity, and Machine Learning.",
-      "Enrolled in advanced courses including Fundamentals of Artificial Intelligence and The Human Factor in Data Collection."
+      "Data Analysis and Visualization · 98/100",
+      "Optimization Methods in Machine Learning · 98/100",
+      "Foundations and Applications of Artificial Intelligence · 96/100"
     ],
-    tags: ["Data Science", "Machine Learning", "Software Engineering", "Algorithms"],
+    tags: [],
     icon: "graduation-cap",
   },
   {
@@ -74,9 +72,9 @@ export const education = [
     duration: "2021 - 2022",
     subtitle: "Technion Israel Institute of Technology",
     details: [
-      "Completed a highly rigorous academic program focusing on advanced Mathematics, Physics, English, and Scientific Writing."
+      "Studied mathematics, physics and scientific writing."
     ],
-    tags: ["Mathematics", "Physics", "English", "Scientific Writing"],
+    tags: [],
     icon: "book-open",
   },
   {
@@ -84,25 +82,31 @@ export const education = [
     duration: "2014 - 2017",
     subtitle: "Efrayim Katsir High School, Holon",
     details: [
-      "Graduated with honors, majoring in Computer Science, English, and Mathematics.",
-      "FIRST Robotics (FRC & FLL): Drafting Team Lead. Two-time National Champion and Israeli representative at the World Championship in the US."
+      "Led the drafting team in FIRST Robotics. Our team won two national championships and represented Israel at the World Championship."
     ],
-    tags: ["Computer Science", "FIRST Robotics Competition", "Team Lead"],
+    tags: [],
     icon: "school",
   },
 ];
 
 export const experience = [
   {
+    title: "Visitor Guide",
+    subtitle: "Technion Visitors Center",
+    details: [
+      "Guided prospective students, donors and visiting delegations from Israel and abroad, including ambassadors. Adapted each tour to the audience’s background and questions."
+    ],
+    tags: ["Hebrew · Native", "English · Fluent"],
+    icon: "comments",
+  },
+  {
     title: "Israel Defense Forces (IDF) – Artillery Corps",
     duration: "2017 - 2020",
     subtitle: "Combat Soldier, Battalion Commander's Forward Command Team",
     details: [
-      "Selected to serve in the Battalion Commander's Forward Command Team, working directly with senior officers in highly dynamic and high-pressure environments.",
-      "Operated communication and command-and-control systems, requiring quick decision-making, multitasking, and extreme reliability.",
-      "Honorable discharge with a certificate of excellence/recommendation from the Battalion Commander."
+      "Operated communications systems alongside senior officers. Received a commendation from the battalion commander."
     ],
-    tags: ["Leadership", "Decision Making", "Multitasking", "Command & Control"],
+    tags: [],
     icon: "star",
   },
 ];
@@ -131,9 +135,10 @@ export const featuredProjects = [
   {
     title: "AI Agent Control Center",
     category: "Windows desktop app · Multi-agent orchestration",
-    shortDescription: "Give a lead coding agent a task, watch its helpers work in parallel, and review their changes in one Windows app.",
+    shortDescription: "Delegate coding tasks and review parallel Git changes in one Windows app.",
     description: "I verified the delegation workflow end to end with a real Codex lead and two helpers. The lead accepted both helpers’ results after integration. Claude Code completed an authenticated run, and Gemini CLI was exercised with a simulated provider. Automated backend, UI and browser tests cover the system using temporary databases, real Git repositories and simulated CLIs.",
     detailTemplate: "agent-control-story",
+    videoAction: "Watch 45-second demo",
     tags: ["Electron", "React", "Python", "FastAPI", "SQLite", "Git worktrees", "Server-Sent Events"],
     github: "https://github.com/amit22882036-ship-it/ai-agent-control-center",
     demo: null,
@@ -146,21 +151,34 @@ export const featuredProjects = [
     ]
   },
   {
-    title: "Autonomous Agricultural Advisory Agent",
-    shortDescription: "Full-stack AI advisory agent for agriculture.",
-    description: "Agri-Advisor is an autonomous AI agricultural agent designed to empower Israeli farmers with data-driven insights through a natural conversational interface. Built on a sophisticated ReAct architecture, the agent utilizes OpenAI Tools to independently plan and execute complex tasks, such as retrieving real-time meteorological data and searching a high-fidelity knowledge base. The system features a robust Retrieval-Augmented Generation (RAG) pipeline that processes over 6,300 text chunks from professional manuals, optimized with MultiQuery retrieval and self-correction mechanisms to ensure highly accurate, hallucination-free responses. Developed with Python, FastAPI, and LangChain, the application ensures complete operational transparency by streaming the agent’s reasoning steps and tool execution directly to the user interface.",
-    repoName: "agri-advisor",
-    tags: ["Python", "FastAPI", "LangChain", "Pinecone", "Supabase", "ReAct", "RAG"],
-    github: "https://github.com/amit22882036-ship-it/ArgiAgent.git", 
-    demo: "https://argiagent.onrender.com"
+    title: "Check-in To Reality",
+    category: "Data engineering · NLP & model evaluation",
+    shortDescription: "Where do hotel listings and guest reviews disagree?",
+    detailTemplate: "hotel-story",
+    description: "The map and comparison views use scores calculated in Databricks and served by Flask and PostgreSQL. The core repository contains the notebooks for data preparation, spatial joins and model evaluation.",
+    thumbnail: { url: "./images/projects/hotel-reality-gap/thumbnail.png", alt: "Check-in To Reality project logo" },
+    images: [
+      { url: "./images/projects/hotel-reality-gap/screenshot2.png", alt: "Hotel map with location markers and filters for exploring nearby properties." },
+      { url: "./images/projects/hotel-reality-gap/screenshot4.png", alt: "Comparison view with two hotel profiles and side-by-side feature charts." },
+      { url: "./images/projects/hotel-reality-gap/screenshot3.png", alt: "Search results with review signals and filters for individual hotels." }
+    ],
+    tags: ["Python", "PySpark", "Databricks", "NLP", "Flask", "PostgreSQL"],
+    github: "https://github.com/amit22882036-ship-it/checkin-to-reality",
+    coreRepo: "https://github.com/amit22882036-ship-it/checkin-to-reality-core",
+    demo: "https://checkin-to-reality.onrender.com"
   },
   {
-    title: "Hotel Reality Gap Analysis",
-    shortDescription: "Big-data pipeline and ML model for analyzing hotel reviews.",
-    description: "Check-in To Reality is a comprehensive big data and machine learning platform that quantifies the discrepancy between hotel marketing promises and actual guest experiences. By integrating over 250,000 records from Booking.com, OpenStreetMap, and Google Maps, the project employs an innovative Geohashing strategy to perform complex spatial joins at scale within a PySpark and Databricks environment. The analytical core features a hybrid NLP pipeline combining BERT-based sentiment analysis with rule-based complaint detection to extract nuanced signals from thousands of guest reviews. These insights power a Gradient Boosted Trees model—achieving a high predictive accuracy of R^2 = 0.873 to identify 'Hidden Gems' and overrated properties, all served through a full-stack Flask application with a PostgreSQL backend and interactive map visualizations.",
-    repoName: "hotel-reality-gap",
-    tags: ["Python", "PySpark", "NLP (BERT)", "Flask", "PostgreSQL", "Databricks"],
-    github: "https://github.com/amit22882036-ship-it/checkin-to-reality.git", 
-    demo: "https://checkin-to-reality.onrender.com"
+    title: "Agri-Advisor",
+    category: "Applied AI · Hebrew-language advisory tools",
+    shortDescription: "Ask about a crop in Hebrew and follow up using local weather history.",
+    detailTemplate: "agri-story",
+    description: "The FastAPI backend streams the answer to the chat and stores the conversation in Supabase. A follow-up question can refer back to the crop or location discussed earlier.",
+    thumbnail: { url: "./images/projects/agri-advisor/thumbnail.png", alt: "Agri-Advisor plant and circuit logo" },
+    images: [
+      { url: "./images/projects/agri-advisor/screenshot1.png", alt: "Hebrew chat showing a user's questions, agricultural guidance and the conversation sidebar." }
+    ],
+    tags: ["Python", "FastAPI", "LangChain", "Pinecone", "Supabase", "RAG"],
+    github: "https://github.com/amit22882036-ship-it/ArgiAgent",
+    demo: "https://argiagent.onrender.com"
   }
 ];
