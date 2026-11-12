@@ -28,6 +28,7 @@ HERO = Path(__file__).resolve().parent.parent / "assets" / "img" / "hero"
 CROP_X0, CROP_X1, H = 340, 1430, 441
 THEMES = {"day": 0, "night": 446}       # top of each scene in the source images
 CLIP_Y = 353                             # back edge of the desk (canvas y)
+SEAM_OVERLAP = 3                         # rows the hands layer reaches above it
 PERSON_X = (300, 720)                    # columns Amit can occupy
 HANDS_X = (480, 660)                     # columns of his hands on the keyboard
 NOTEBOOK_TOP = 364                       # his sleeve rests on the desk down to here
@@ -344,7 +345,10 @@ def main(debug_dir=None):
 
         alpha = soft_alpha(person, O[..., 3])
         upper = alpha.copy(); upper[CLIP_Y:] = 0
-        lower = alpha.copy(); lower[:CLIP_Y] = 0
+        # The hands start a few rows above the desk edge, overlapping Amit, so
+        # no hairline of the desk shows through where the two layers meet when
+        # the picture is scaled to a fractional pixel.
+        lower = alpha.copy(); lower[:CLIP_Y - SEAM_OVERLAP] = 0
 
         save(Image.fromarray(room.astype(np.uint8), "RGBA"), f"room-{theme}.webp")
         save(extend_torso(layer(O, upper), person, O), f"amit-{theme}.webp")

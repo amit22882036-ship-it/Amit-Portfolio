@@ -13,14 +13,14 @@ window.PORTFOLIO = {
 
   // The 20-second version for recruiters.
   quickFacts: [
-    { icon: "fa-solid fa-magnifying-glass", label: "Looking for", value: "A student role in software, data or machine learning" },
+    { icon: "fa-solid fa-magnifying-glass", label: "Looking for", value: "Roles where data, AI and software meet" },
     { icon: "fa-solid fa-graduation-cap", label: "Studying", value: "B.Sc. Data Science & Engineering, Technion · 2022–2027" },
     { icon: "fa-solid fa-code", label: "Core stack", value: "Python · SQL · FastAPI · PySpark · LangChain · React" },
     { icon: "fa-solid fa-language", label: "Languages", value: "Hebrew (native) · English (fluent)" },
   ],
 
   about: [
-    "I’m Amit Gertner, a <strong>Data Science and Engineering student at the Technion</strong>. I built AI Agent Control Center so a developer can give one coding agent a task, watch it delegate work, and review the changes in one place. The part I wanted to get right was bringing parallel changes back together.",
+    "I’m Amit Gertner, <strong>Data Science and Engineering at the Technion</strong>. I built AI Agent Control Center so a developer can give one coding agent a task, watch it delegate work, and review the changes in one place. The part I wanted to get right was bringing parallel changes back together.",
     "My first engineering team built robots. As drafting lead, I had to make drawings clear enough for a teammate to build from. Later, guiding visitors at the Technion taught me to ask what someone wants to understand before I start explaining. I bring both habits to software and data work.",
   ],
 
@@ -99,7 +99,7 @@ window.PORTFOLIO = {
       title: "Looking for my next challenge",
       icon: "fa-solid fa-rocket",
       sky: "night",
-      text: "I’m looking for a student role in software development, data or machine learning, where I can take ownership and grow alongside an experienced team.",
+      text: "I’m looking for my next role in data, AI or software: somewhere I can take ownership, solve real problems and keep growing with a strong team.",
       cta: true,
     },
   ],
@@ -109,7 +109,6 @@ window.PORTFOLIO = {
       id: "agent",
       title: "AI Agent Control Center",
       category: "Windows desktop app · Multi-agent orchestration",
-      status: "In active development",
       pitch: "Give one coding agent a task, watch it delegate to helpers in isolated Git worktrees, and review every change before it lands.",
       cover: "assets/img/projects/ai-agent-control-center/film-cover.webp",
       coverAlt: "AI Agent Control Center walkthrough cover",
@@ -202,7 +201,7 @@ window.PORTFOLIO = {
       years: "2026",
       cards: [
         { type: "quote", text: "I enjoy connecting analytical thinking with hands-on development: understanding how things work, exploring different approaches, and turning ideas into working applications.", by: "Amit" },
-        { type: "note", icon: "fa-solid fa-rocket", title: "Open to opportunities", text: "Looking for a student role in software development, data or machine learning, where I can contribute, take ownership and grow alongside an experienced team.", cta: true },
+        { type: "note", icon: "fa-solid fa-rocket", title: "Open to opportunities", text: "Looking for my next role in data, AI or software: somewhere I can contribute, take ownership and keep growing with a strong team.", cta: true },
         { type: "hobbies", title: "Off the clock" },
       ],
     },
