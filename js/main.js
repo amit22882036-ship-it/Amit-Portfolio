@@ -51,8 +51,58 @@
     redrawMarks();
   }
   toggle.addEventListener("click", function () {
-    applyTheme(root.dataset.theme === "night" ? "day" : "night", true);
+    var next = root.dataset.theme === "night" ? "day" : "night";
+    swapAmit(next); // reads where Amit is now, so it runs before the theme flips
+    applyTheme(next, true);
   });
+
+  /* Amit ducks behind the desk and pops back up dressed for the other shift.
+     CSS holds the resting state for each theme; these animations only run the
+     move between them. */
+  var DUCK = 82; // percent of the illustration's height, matches --duck
+
+  function elasticOut(t) { // springy settle: overshoots a little, then rests
+    if (t === 0 || t === 1) return t;
+    return Math.pow(2, -10 * t) * Math.sin((t - 0.1875) * (2 * Math.PI) / 0.75) + 1;
+  }
+
+  function currentY(node) { // where the node is now, as a percent of its height
+    var m = new DOMMatrixReadOnly(getComputedStyle(node).transform);
+    return node.offsetHeight ? (m.m42 / node.offsetHeight) * 100 : 0;
+  }
+
+  function swapAmit(theme) {
+    var scene = $("#scene");
+    if (reduceMotion || !scene.animate || typeof DOMMatrixReadOnly === "undefined") return;
+    var from = theme === "night" ? "day" : "night";
+    var outBody = $(".amit-body." + from, scene), inBody = $(".amit-body." + theme, scene);
+    var outHands = $(".amit-hands." + from, scene), inHands = $(".amit-hands." + theme, scene);
+
+    var outY = currentY(outBody), inY = currentY(inBody);
+    var handsShown = +getComputedStyle(outHands).opacity;
+    [outBody, inBody, outHands, inHands].forEach(function (n) {
+      n.getAnimations().forEach(function (a) { a.cancel(); });
+    });
+    var inStart = inY > 1 ? inY : DUCK;
+    // the one leaving ducks first (less if it's already part way down)
+    var duck = Math.round(380 * Math.max(0, DUCK - outY) / DUCK);
+    var wait = duck ? duck + 40 : 0;
+
+    outHands.animate([{ opacity: handsShown }, { opacity: 0 }], { duration: 140, easing: "ease-out" });
+    if (duck) {
+      outBody.animate(
+        [{ transform: "translateY(" + outY + "%)" }, { transform: "translateY(" + DUCK + "%)" }],
+        { duration: duck, easing: "cubic-bezier(.5, 0, .75, 0)" }
+      );
+    }
+    var rise = [];
+    for (var i = 0; i <= 40; i++) {
+      var t = i / 40;
+      rise.push({ offset: t, transform: "translateY(" + (inStart * (1 - elasticOut(t))).toFixed(2) + "%)" });
+    }
+    inBody.animate(rise, { duration: 1000, delay: wait, fill: "backwards" });
+    inHands.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 220, delay: wait + 630, fill: "backwards", easing: "ease-out" });
+  }
 
   /* ------------------------------------------------------------------
      Hero hotspots

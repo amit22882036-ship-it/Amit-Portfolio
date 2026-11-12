@@ -133,14 +133,27 @@ html[data-theme="night"] .theme-toggle .sun { opacity: 0; transform: rotate(90de
 .hero { position: relative; z-index: 1; padding: 64px 16px 0; }
 .scene-wrap { max-width: 1180px; margin: 0 auto; padding: 0 70px 74px; }
 .scene { position: relative; width: 100%; aspect-ratio: 1090 / 441; }
-.scene-img {
+.scene-img, .amit img {
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: contain; user-select: none; -webkit-user-drag: none;
-  transition: opacity var(--t-theme) ease;
 }
+.scene-img { transition: opacity var(--t-theme) ease; }
 .scene-img.night { opacity: 0; }
 html[data-theme="night"] .scene-img.night { opacity: 1; }
 html[data-theme="night"] .scene-img.day { opacity: 0; }
+/* The laptop and mug stay solid while the theme fades, so Amit never shows
+   through them: the night version fades in over a day version that stays. */
+html[data-theme="night"] .scene-img.front.day { opacity: 1; }
+
+/* Amit sits between the room and the desk. Above the back edge of the desk
+   (80% down the canvas) he can duck out of sight; main.js animates the swap. */
+.amit { position: absolute; inset: 0; pointer-events: none; --duck: 82%; }
+.amit-clip { position: absolute; inset: 0; clip-path: polygon(-10% -40%, 110% -40%, 110% 80.05%, -10% 80.05%); }
+.amit-body { will-change: transform; }
+.amit-body.night, html[data-theme="night"] .amit-body.day { transform: translateY(var(--duck)); }
+html[data-theme="night"] .amit-body.night { transform: none; }
+.amit-hands.night, html[data-theme="night"] .amit-hands.day { opacity: 0; }
+html[data-theme="night"] .amit-hands.night { opacity: 1; }
 
 .hotspots { position: absolute; inset: 0; }
 .hs {
